@@ -465,6 +465,11 @@ body {
   border-top-right-radius: 5px;
 }
 
+.dropdownlink.overflowlink.roundbottom, .dropdownlink.roundbottom {
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
 .dropdown-toggle {
   background-color: #0000;
 }
