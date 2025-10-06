@@ -37,16 +37,16 @@ body {
 }
 
 .heropname {
-  margin-bottom: 20px;
-  font-size: 25px;
+  margin-bottom: 10px;
+  font-size: 22px;
 }
 
 .heading {
   margin-top: 0;
   margin-bottom: 20px;
-  font-size: 126px;
+  font-size: 100px;
   font-weight: 600;
-  line-height: 126px;
+  line-height: 102px;
 }
 
 .div-block {
@@ -59,7 +59,7 @@ body {
 .herop {
   width: 95%;
   margin-bottom: 40px;
-  font-size: 25px;
+  font-size: 22px;
   font-weight: 300;
   line-height: 40px;
 }
@@ -201,18 +201,17 @@ body {
   margin-bottom: 130px;
 }
 
-.paragraph {
-  max-width: 700px;
+.p {
   margin-bottom: 20px;
   font-size: 18px;
   line-height: 35px;
 }
 
-.paragraph.centeredp, .paragraph.centeredp-copy {
+.p.centeredp, .p.centeredp-copy {
   text-align: center;
 }
 
-.paragraph.ctap {
+.p.ctap {
   width: 75%;
   margin-top: 15px;
   margin-left: auto;
@@ -597,6 +596,35 @@ body {
   margin-left: 0;
 }
 
+.casestudycontainer {
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+}
+
+.casestudytext {
+  margin-left: 60px;
+}
+
+.image-9 {
+  width: 35vw;
+}
+
+.casestudyimg {
+  border-radius: 10px;
+  width: 25vw;
+  max-width: 40vw;
+}
+
+.localimage {
+  border-radius: 10px;
+}
+
+.image-10 {
+  border-radius: 999px;
+  max-height: 600px;
+}
+
 @media screen and (max-width: 991px) {
   .container {
     width: 95vw;
@@ -653,7 +681,7 @@ body {
     line-height: 80px;
   }
 
-  .paragraph {
+  .p {
     max-width: 70vw;
   }
 
@@ -767,11 +795,11 @@ body {
     margin-top: 20px;
   }
 
-  .paragraph {
+  .p {
     max-width: 95vw;
   }
 
-  .paragraph.ctap {
+  .p.ctap {
     width: 100%;
   }
 
@@ -928,7 +956,7 @@ body {
     margin-right: auto;
   }
 
-  .paragraph {
+  .p {
     font-size: 16px;
   }
 
@@ -988,7 +1016,7 @@ body {
   place-self: center;
 }
 
-#w-node-_16bab3b0-df4d-2fd6-4a20-1ffeeaa0f13d-eaa0f120, #w-node-_16bab3b0-df4d-2fd6-4a20-1ffeeaa0f14d-eaa0f120 {
+#w-node-_16bab3b0-df4d-2fd6-4a20-1ffeeaa0f13d-eaa0f120, #w-node-ef16c80e-ccf9-6219-86d6-8b86b6041651-eaa0f120, #w-node-_16bab3b0-df4d-2fd6-4a20-1ffeeaa0f14d-eaa0f120 {
   grid-area: span 1 / span 1 / span 1 / span 1;
 }
 
