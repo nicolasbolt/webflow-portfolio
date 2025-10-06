@@ -751,6 +751,15 @@ body {
   .smallerimg {
     max-width: 35vw;
   }
+
+  .casestudycontainer {
+    flex-flow: column;
+  }
+
+  .casestudyimg {
+    width: 60vw;
+    max-width: 60vw;
+  }
 }
 
 @media screen and (max-width: 767px) {
@@ -905,6 +914,20 @@ body {
   .smallerimg {
     max-width: 75vw;
   }
+
+  .casestudycontainer {
+    flex-flow: column;
+  }
+
+  .casestudytext {
+    margin-top: 10px;
+    margin-left: 0;
+  }
+
+  .casestudyimg {
+    width: 70vw;
+    max-width: 70vw;
+  }
 }
 
 @media screen and (max-width: 479px) {
@@ -1009,6 +1032,19 @@ body {
 
   .mobilebrand {
     margin-top: 20px;
+  }
+
+  .casestudycontainer {
+    flex-flow: column;
+  }
+
+  .casestudytext {
+    margin-left: 0;
+  }
+
+  .casestudyimg {
+    width: 95vw;
+    max-width: 95vw;
   }
 }
 
