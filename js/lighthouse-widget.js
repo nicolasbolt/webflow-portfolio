@@ -83,7 +83,7 @@
       console.log('Calling Lighthouse API for:', targetUrl);
       
       const requestedCategories = ['performance', 'accessibility', 'best-practices', 'seo'];
-      const strategy = 'desktop';
+      const strategy = 'mobile';
       
       const response = await fetch(CONFIG.apiEndpoint, {
         method: 'POST',
