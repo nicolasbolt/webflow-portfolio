@@ -222,6 +222,10 @@ body {
   margin-left: 15px;
 }
 
+.heading3 {
+  line-height: 32px;
+}
+
 .heading3.centeredheading {
   text-align: center;
 }

@@ -1,0 +1,395 @@
+/**
+ * Lighthouse Widget - Vanilla JavaScript
+ * Simple website performance analyzer that can be dropped into any static site
+ */
+(function() {
+  'use strict';
+
+  // Configuration
+  const CONFIG = {
+    apiEndpoint: '/api/lighthouse', // Cloudflare Pages Function endpoint
+    containerSelector: '[data-lighthouse-widget]'
+  };
+
+  // Score descriptions and improvement suggestions
+  const scoreDescriptions = {
+    performance: {
+      title: 'Performance',
+      description: 'How fast your page loads and becomes interactive'
+    },
+    accessibility: {
+      title: 'Accessibility', 
+      description: 'How accessible your page is to users with disabilities'
+    },
+    bestPractices: {
+      title: 'Best Practices',
+      description: 'Whether your page follows web development best practices'
+    },
+    seo: {
+      title: 'SEO',
+      description: 'How well your page is optimized for search engines'
+    }
+  };
+
+  const improvementSuggestions = {
+    performance: [
+      { title: 'Optimize Images', description: 'Serve images in next-gen formats (WebP, AVIF) and properly size them', impact: 'High' },
+      { title: 'Minify JavaScript and CSS', description: 'Remove unnecessary characters and whitespace from code files', impact: 'Medium' },
+      { title: 'Enable Text Compression', description: 'Use gzip or brotli compression to reduce file transfer sizes', impact: 'High' },
+      { title: 'Eliminate Render-Blocking Resources', description: 'Load critical CSS inline and defer non-critical JavaScript', impact: 'High' },
+      { title: 'Use a Content Delivery Network (CDN)', description: 'Serve static assets from servers closer to your users', impact: 'Medium' },
+      { title: 'Preload Key Requests', description: 'Use rel="preload" for critical resources needed early in page load', impact: 'Medium' }
+    ],
+    accessibility: [
+      { title: 'Add Alt Text to Images', description: 'Provide descriptive alternative text for all informative images', impact: 'High' },
+      { title: 'Ensure Proper Color Contrast', description: 'Use sufficient color contrast ratios (4.5:1 for normal text)', impact: 'High' },
+      { title: 'Add Form Labels', description: 'Associate labels with form controls using for/id attributes', impact: 'High' },
+      { title: 'Use Semantic HTML', description: 'Use proper heading hierarchy (h1-h6) and semantic elements', impact: 'Medium' },
+      { title: 'Make Content Keyboard Accessible', description: 'Ensure all interactive elements can be accessed via keyboard', impact: 'High' },
+      { title: 'Add Focus Indicators', description: 'Provide visible focus indicators for keyboard navigation', impact: 'Medium' }
+    ],
+    bestPractices: [
+      { title: 'Use HTTPS', description: 'Serve your website over a secure HTTPS connection', impact: 'High' },
+      { title: 'Avoid Deprecated APIs', description: 'Replace deprecated JavaScript APIs with modern alternatives', impact: 'Medium' },
+      { title: 'Handle JavaScript Errors', description: 'Implement proper error handling and avoid console errors', impact: 'Medium' },
+      { title: 'Use HTTP/2', description: 'Upgrade to HTTP/2 for better performance and security', impact: 'Medium' },
+      { title: 'Implement CSP Headers', description: 'Add Content Security Policy headers to prevent XSS attacks', impact: 'High' },
+      { title: 'Optimize Third-Party Code', description: 'Minimize and optimize external scripts and resources', impact: 'Medium' }
+    ],
+    seo: [
+      { title: 'Add Meta Description', description: 'Write compelling meta descriptions for better search results', impact: 'High' },
+      { title: 'Use Descriptive Title Tags', description: 'Create unique, descriptive titles for each page (50-60 characters)', impact: 'High' },
+      { title: 'Implement Structured Data', description: 'Add schema markup to help search engines understand content', impact: 'Medium' },
+      { title: 'Optimize for Mobile', description: 'Ensure your site is mobile-friendly and responsive', impact: 'High' },
+      { title: 'Use Descriptive Link Text', description: 'Write clear, descriptive anchor text instead of "click here"', impact: 'Medium' },
+      { title: 'Add Image Alt Text', description: 'Include descriptive alt text for images to improve SEO', impact: 'Medium' }
+    ]
+  };
+
+  // Utility functions
+  function getScoreColor(score) {
+    if (score >= 90) return 'good';
+    if (score >= 50) return 'needs-improvement';
+    return 'poor';
+  }
+
+  function generateId() {
+    return 'lighthouse-' + Math.random().toString(36).substr(2, 9);
+  }
+
+  // API call to Cloudflare Pages Function
+  async function callLighthouseAPI(targetUrl) {
+    try {
+      console.log('Calling Lighthouse API for:', targetUrl);
+      
+      const requestedCategories = ['performance', 'accessibility', 'best-practices', 'seo'];
+      const strategy = 'desktop';
+      
+      const response = await fetch(CONFIG.apiEndpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          url: targetUrl,
+          strategy: strategy,
+          categories: requestedCategories
+        })
+      });
+      
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        console.error('API Error Response:', errorData);
+        
+        if (response.status === 403) {
+          throw new Error('API key is invalid or quota exceeded. Please check your Google API key.');
+        } else if (response.status === 429) {
+          throw new Error('API rate limit exceeded. Please try again later.');
+        } else {
+          throw new Error(`API error: ${response.status} - ${errorData.error?.message || 'Unknown error'}`);
+        }
+      }
+      
+      const data = await response.json();
+      
+      if (!data.lighthouseResult) {
+        throw new Error('No Lighthouse results returned from API');
+      }
+      
+      const lighthouseResult = data.lighthouseResult;
+      const categoryResults = lighthouseResult.categories || {};
+      
+      const scores = {
+        performance: Math.round((categoryResults.performance?.score || 0) * 100),
+        accessibility: Math.round((categoryResults.accessibility?.score || 0) * 100),
+        bestPractices: Math.round((categoryResults['best-practices']?.score || 0) * 100),
+        seo: Math.round((categoryResults.seo?.score || 0) * 100),
+        url: targetUrl,
+        timestamp: new Date().toISOString(),
+        source: 'Google PageSpeed Insights',
+        strategy: strategy,
+        loadingExperience: data.loadingExperience?.overall_category || 'Unknown',
+        originLoadingExperience: data.originLoadingExperience?.overall_category || 'Unknown'
+      };
+      
+      console.log('Successfully got Lighthouse data:', scores);
+      return scores;
+      
+    } catch (error) {
+      console.error('PageSpeed Insights API Error:', error);
+      throw error;
+    }
+  }
+
+  // Create the widget HTML
+  function createWidgetHTML(title) {
+    const widgetId = generateId();
+    
+    return `
+      <div class="lighthouse-widget" id="${widgetId}">
+        <h2 class="lighthouse-widget__title">${title}</h2>
+        <form class="lighthouse-widget__form">
+          <div class="lighthouse-widget__input-group">
+            <label class="lighthouse-widget__label">Website URL</label>
+            <input
+              type="text"
+              class="lighthouse-widget__input"
+              placeholder="example.com"
+              required
+            />
+          </div>
+          <button type="submit" class="lighthouse-widget__submit-btn">
+            Analyze Website
+          </button>
+          <div class="lighthouse-widget__loading" style="display: none;">
+            <div class="lighthouse-widget__loading-spinner"></div>
+            <p class="lighthouse-widget__loading-text">Analyzing website performance...</p>
+          </div>
+        </form>
+        <div class="lighthouse-widget__results" style="display: none;">
+          <h3 class="lighthouse-widget__results-title">Lighthouse Results</h3>
+          <div class="lighthouse-widget__results-grid"></div>
+          <div class="lighthouse-widget__results-meta"></div>
+        </div>
+      </div>
+    `;
+  }
+
+  // Create results HTML
+  function createResultsHTML(results) {
+    let html = '';
+    
+    Object.entries(scoreDescriptions).forEach(([key, info]) => {
+      const score = results[key];
+      const scoreColor = getScoreColor(score);
+      
+      html += `
+        <div class="lighthouse-widget__result-container">
+          <div class="lighthouse-widget__result-row" data-category="${key}">
+            <div class="lighthouse-widget__score lighthouse-widget__score--${scoreColor}">
+              ${score}
+            </div>
+            <div class="lighthouse-widget__result-info">
+              <h4 class="lighthouse-widget__result-title">
+                ${info.title}
+                <span class="lighthouse-widget__expand-icon">+</span>
+              </h4>
+              <p class="lighthouse-widget__result-description">${info.description}</p>
+            </div>
+          </div>
+          <div class="lighthouse-widget__suggestions" style="display: none;">
+            <h5 class="lighthouse-widget__suggestions-title">How to improve:</h5>
+            <div class="lighthouse-widget__suggestions-list">
+              ${improvementSuggestions[key].map(suggestion => `
+                <div class="lighthouse-widget__suggestion">
+                  <div class="lighthouse-widget__suggestion-header">
+                    <h6 class="lighthouse-widget__suggestion-title">${suggestion.title}</h6>
+                    <span class="lighthouse-widget__impact lighthouse-widget__impact--${suggestion.impact.toLowerCase()}">
+                      ${suggestion.impact} Impact
+                    </span>
+                  </div>
+                  <p class="lighthouse-widget__suggestion-description">${suggestion.description}</p>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+      `;
+    });
+    
+    return html;
+  }
+
+  // Show/hide loading state
+  function setLoadingState(container, isLoading, message = 'Analyzing website performance...') {
+    const loading = container.querySelector('.lighthouse-widget__loading');
+    const loadingText = container.querySelector('.lighthouse-widget__loading-text');
+    const submitBtn = container.querySelector('.lighthouse-widget__submit-btn');
+    const input = container.querySelector('.lighthouse-widget__input');
+    
+    if (isLoading) {
+      loading.style.display = 'flex';
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Analyzing...';
+      input.disabled = true;
+      loadingText.textContent = message;
+    } else {
+      loading.style.display = 'none';
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Analyze Website';
+      input.disabled = false;
+    }
+  }
+
+  // Display results
+  function displayResults(container, results) {
+    const resultsContainer = container.querySelector('.lighthouse-widget__results');
+    const resultsGrid = container.querySelector('.lighthouse-widget__results-grid');
+    const resultsMeta = container.querySelector('.lighthouse-widget__results-meta');
+    
+    // Clear previous results
+    resultsGrid.innerHTML = '';
+    
+    // Add new results
+    resultsGrid.innerHTML = createResultsHTML(results);
+    
+    // Add meta information
+    resultsMeta.innerHTML = `
+      <p class="lighthouse-widget__analyzed-url">
+        <strong>Analyzed:</strong> ${results.url}
+      </p>
+      <p class="lighthouse-widget__analysis-time">
+        <strong>Strategy:</strong> ${results.strategy} • <strong>Time:</strong> ${new Date(results.timestamp).toLocaleString()}
+      </p>
+    `;
+    
+    // Show results
+    resultsContainer.style.display = 'block';
+    
+    // Add click handlers for expandable sections
+    setupResultClickHandlers(container);
+  }
+
+  // Setup click handlers for expandable results
+  function setupResultClickHandlers(container) {
+    const resultRows = container.querySelectorAll('.lighthouse-widget__result-row');
+    let expandedCategory = null;
+    
+    resultRows.forEach(row => {
+      row.addEventListener('click', () => {
+        const category = row.dataset.category;
+        const suggestions = row.parentElement.querySelector('.lighthouse-widget__suggestions');
+        const expandIcon = row.querySelector('.lighthouse-widget__expand-icon');
+        
+        // Collapse previously expanded category
+        if (expandedCategory && expandedCategory !== category) {
+          const prevRow = container.querySelector(`[data-category="${expandedCategory}"]`);
+          const prevSuggestions = prevRow.parentElement.querySelector('.lighthouse-widget__suggestions');
+          const prevIcon = prevRow.querySelector('.lighthouse-widget__expand-icon');
+          
+          prevSuggestions.style.display = 'none';
+          prevIcon.textContent = '+';
+          prevRow.classList.remove('lighthouse-widget__result-row--expanded');
+        }
+        
+        // Toggle current category
+        if (expandedCategory === category) {
+          suggestions.style.display = 'none';
+          expandIcon.textContent = '+';
+          row.classList.remove('lighthouse-widget__result-row--expanded');
+          expandedCategory = null;
+        } else {
+          suggestions.style.display = 'block';
+          expandIcon.textContent = '−';
+          row.classList.add('lighthouse-widget__result-row--expanded');
+          expandedCategory = category;
+        }
+      });
+    });
+  }
+
+  // Setup form submission
+  function setupFormHandler(container) {
+    const form = container.querySelector('.lighthouse-widget__form');
+    const input = container.querySelector('.lighthouse-widget__input');
+    
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      let url = input.value.trim();
+      
+      if (!url) {
+        alert('Please enter a website URL');
+        return;
+      }
+      
+      // Auto-add https:// if no protocol is provided
+      if (!url.startsWith('http://') && !url.startsWith('https://')) {
+        url = 'https://' + url;
+      }
+      
+      // Basic URL validation
+      try {
+        new URL(url);
+      } catch {
+        alert('Please enter a valid website URL (e.g., google.com or example.com)');
+        return;
+      }
+      
+      try {
+        setLoadingState(container, true, 'Preparing to analyze website...');
+        
+        setTimeout(() => setLoadingState(container, true, 'Running Lighthouse analysis...'), 1000);
+        const results = await callLighthouseAPI(url);
+        
+        setLoadingState(container, true, 'Processing results...');
+        setTimeout(() => {
+          displayResults(container, results);
+          setLoadingState(container, false);
+        }, 500);
+        
+      } catch (error) {
+        console.error('Error analyzing URL:', error);
+        alert('Error: ' + (error.message || 'Error analyzing website. Please try again.'));
+        setLoadingState(container, false);
+      }
+    });
+  }
+
+  // Initialize widget in a container
+  function initWidget(container) {
+    if (container.dataset.initialized) return;
+    
+    const title = container.dataset.title || 'Website Performance Analyzer';
+    
+    // Insert widget HTML
+    container.innerHTML = createWidgetHTML(title);
+    
+    // Setup form handler
+    setupFormHandler(container);
+    
+    // Mark as initialized
+    container.dataset.initialized = 'true';
+  }
+
+  // Initialize all widgets on the page
+  function initAllWidgets() {
+    const containers = document.querySelectorAll(CONFIG.containerSelector);
+    containers.forEach(initWidget);
+  }
+
+  // Auto-initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAllWidgets);
+  } else {
+    initAllWidgets();
+  }
+
+  // Expose global API
+  window.LighthouseWidget = {
+    init: initAllWidgets,
+    initContainer: initWidget,
+    config: CONFIG
+  };
+
+})();
