@@ -1,0 +1,33 @@
+# Robots.txt for nicolasbolt.com
+# Web Design and SEO Services - Indianapolis
+
+User-agent: *
+Allow: /
+
+# Block access to admin and private areas
+Disallow: /admin/
+Disallow: /private/
+Disallow: /.git/
+Disallow: /functions/
+
+# Block access to file types that shouldn't be indexed
+Disallow: /*.css$
+Disallow: /*.js$
+Disallow: /*.json$
+
+# Allow access to important resources
+Allow: /css/
+Allow: /js/
+Allow: /images/
+
+# Crawl-delay (optional - remove if causing issues)
+# Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://nicolasbolt.com/sitemap.xml
+
+# Additional notes:
+# - This robots.txt allows all search engines to crawl the site
+# - Important pages and resources are explicitly allowed
+# - Backend files and functions are blocked for security
+# - Sitemap helps search engines discover all pages efficiently
