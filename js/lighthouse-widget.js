@@ -306,14 +306,9 @@
             </div>
           </div>
           <div class="lighthouse-widget__suggestions" style="display: none;">
-            <h5 class="lighthouse-widget__suggestions-title">How to improve:</h5>
-            
             ${results.apiRecommendations && results.apiRecommendations[key] && results.apiRecommendations[key].length > 0 ? `
+              <h5 class="lighthouse-widget__suggestions-title">Specific recommendations for your site:</h5>
               <div class="lighthouse-widget__api-recommendations">
-                <h6 class="lighthouse-widget__section-title">
-                  <span class="lighthouse-widget__api-badge">API</span>
-                  Specific Issues Found:
-                </h6>
                 <div class="lighthouse-widget__recommendations-list">
                   ${results.apiRecommendations[key].map(recommendation => `
                     <div class="lighthouse-widget__recommendation lighthouse-widget__recommendation--api">
@@ -336,24 +331,17 @@
                   `).join('')}
                 </div>
               </div>
-            ` : ''}
-            
-            <div class="lighthouse-widget__general-suggestions">
-              <h6 class="lighthouse-widget__section-title">General Best Practices:</h6>
-              <div class="lighthouse-widget__suggestions-list">
-                ${improvementSuggestions[key].map(suggestion => `
-                  <div class="lighthouse-widget__suggestion">
-                    <div class="lighthouse-widget__suggestion-header">
-                      <h6 class="lighthouse-widget__suggestion-title">${suggestion.title}</h6>
-                      <span class="lighthouse-widget__impact lighthouse-widget__impact--${suggestion.impact.toLowerCase()}">
-                        ${suggestion.impact} Impact
-                      </span>
-                    </div>
-                    <p class="lighthouse-widget__suggestion-description">${suggestion.description}</p>
-                  </div>
-                `).join('')}
+            ` : `
+              <div class="lighthouse-widget__no-recommendations">
+                <div class="lighthouse-widget__success-message">
+                  <div class="lighthouse-widget__success-icon">✓</div>
+                  <h6 class="lighthouse-widget__success-title">Great job!</h6>
+                  <p class="lighthouse-widget__success-description">
+                    No specific issues found in this category. Your site is performing well for ${info.title.toLowerCase()}.
+                  </p>
+                </div>
               </div>
-            </div>
+            `}
           </div>
         </div>
       `;
