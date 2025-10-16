@@ -77,6 +77,109 @@
     return 'lighthouse-' + Math.random().toString(36).substr(2, 9);
   }
 
+  // Extract API recommendations from Lighthouse audits
+  function extractApiRecommendations(audits) {
+    const recommendations = {
+      performance: [],
+      accessibility: [],
+      bestPractices: [],
+      seo: []
+    };
+    
+    // Performance recommendations
+    const performanceAudits = [
+      'largest-contentful-paint', 'first-contentful-paint', 'speed-index',
+      'cumulative-layout-shift', 'total-blocking-time', 'render-blocking-resources',
+      'unused-css-rules', 'unused-javascript', 'modern-image-formats',
+      'efficiently-encode-images', 'offscreen-images', 'unminified-css',
+      'unminified-javascript', 'server-response-time', 'uses-text-compression',
+      'uses-rel-preconnect', 'uses-rel-preload', 'font-display'
+    ];
+    
+    performanceAudits.forEach(auditId => {
+      const audit = audits[auditId];
+      if (audit && audit.score !== null && audit.score < 1 && audit.title && audit.description) {
+        recommendations.performance.push({
+          title: audit.title,
+          description: audit.description,
+          impact: getImpactLevel(audit.score),
+          score: Math.round(audit.score * 100),
+          displayValue: audit.displayValue || ''
+        });
+      }
+    });
+    
+    // Accessibility recommendations
+    const accessibilityAudits = [
+      'color-contrast', 'image-alt', 'label', 'link-name',
+      'button-name', 'document-title', 'html-has-lang',
+      'meta-viewport', 'heading-order', 'skip-link',
+      'focus-traps', 'focusable-controls', 'interactive-element-affordance'
+    ];
+    
+    accessibilityAudits.forEach(auditId => {
+      const audit = audits[auditId];
+      if (audit && audit.score !== null && audit.score < 1 && audit.title && audit.description) {
+        recommendations.accessibility.push({
+          title: audit.title,
+          description: audit.description,
+          impact: getImpactLevel(audit.score),
+          score: Math.round(audit.score * 100),
+          displayValue: audit.displayValue || ''
+        });
+      }
+    });
+    
+    // Best Practices recommendations
+    const bestPracticesAudits = [
+      'is-on-https', 'uses-http2', 'no-vulnerable-libraries',
+      'external-anchors-use-rel-noopener', 'geolocation-on-start',
+      'notification-on-start', 'no-document-write', 'js-libraries'
+    ];
+    
+    bestPracticesAudits.forEach(auditId => {
+      const audit = audits[auditId];
+      if (audit && audit.score !== null && audit.score < 1 && audit.title && audit.description) {
+        recommendations.bestPractices.push({
+          title: audit.title,
+          description: audit.description,
+          impact: getImpactLevel(audit.score),
+          score: Math.round(audit.score * 100),
+          displayValue: audit.displayValue || ''
+        });
+      }
+    });
+    
+    // SEO recommendations
+    const seoAudits = [
+      'document-title', 'meta-description', 'http-status-code',
+      'link-text', 'is-crawlable', 'robots-txt', 'image-alt',
+      'hreflang', 'canonical', 'font-size', 'tap-targets'
+    ];
+    
+    seoAudits.forEach(auditId => {
+      const audit = audits[auditId];
+      if (audit && audit.score !== null && audit.score < 1 && audit.title && audit.description) {
+        recommendations.seo.push({
+          title: audit.title,
+          description: audit.description,
+          impact: getImpactLevel(audit.score),
+          score: Math.round(audit.score * 100),
+          displayValue: audit.displayValue || ''
+        });
+      }
+    });
+    
+    return recommendations;
+  }
+  
+  // Determine impact level based on audit score
+  function getImpactLevel(score) {
+    if (score === 0) return 'High';
+    if (score < 0.5) return 'Medium';
+    return 'Low';
+  }
+
   // API call to Cloudflare Pages Function
   async function callLighthouseAPI(targetUrl) {
     try {
@@ -119,6 +222,10 @@
       const lighthouseResult = data.lighthouseResult;
       const categoryResults = lighthouseResult.categories || {};
       
+      // Extract API recommendations from audits
+      const audits = lighthouseResult.audits || {};
+      const apiRecommendations = extractApiRecommendations(audits);
+      
       const scores = {
         performance: Math.round((categoryResults.performance?.score || 0) * 100),
         accessibility: Math.round((categoryResults.accessibility?.score || 0) * 100),
@@ -129,7 +236,8 @@
         source: 'Google PageSpeed Insights',
         strategy: strategy,
         loadingExperience: data.loadingExperience?.overall_category || 'Unknown',
-        originLoadingExperience: data.originLoadingExperience?.overall_category || 'Unknown'
+        originLoadingExperience: data.originLoadingExperience?.overall_category || 'Unknown',
+        apiRecommendations: apiRecommendations
       };
       
       console.log('Successfully got Lighthouse data:', scores);
@@ -199,18 +307,52 @@
           </div>
           <div class="lighthouse-widget__suggestions" style="display: none;">
             <h5 class="lighthouse-widget__suggestions-title">How to improve:</h5>
-            <div class="lighthouse-widget__suggestions-list">
-              ${improvementSuggestions[key].map(suggestion => `
-                <div class="lighthouse-widget__suggestion">
-                  <div class="lighthouse-widget__suggestion-header">
-                    <h6 class="lighthouse-widget__suggestion-title">${suggestion.title}</h6>
-                    <span class="lighthouse-widget__impact lighthouse-widget__impact--${suggestion.impact.toLowerCase()}">
-                      ${suggestion.impact} Impact
-                    </span>
-                  </div>
-                  <p class="lighthouse-widget__suggestion-description">${suggestion.description}</p>
+            
+            ${results.apiRecommendations && results.apiRecommendations[key] && results.apiRecommendations[key].length > 0 ? `
+              <div class="lighthouse-widget__api-recommendations">
+                <h6 class="lighthouse-widget__section-title">
+                  <span class="lighthouse-widget__api-badge">API</span>
+                  Specific Issues Found:
+                </h6>
+                <div class="lighthouse-widget__recommendations-list">
+                  ${results.apiRecommendations[key].map(recommendation => `
+                    <div class="lighthouse-widget__recommendation lighthouse-widget__recommendation--api">
+                      <div class="lighthouse-widget__recommendation-header">
+                        <h6 class="lighthouse-widget__recommendation-title">${recommendation.title}</h6>
+                        <div class="lighthouse-widget__recommendation-meta">
+                          <span class="lighthouse-widget__impact lighthouse-widget__impact--${recommendation.impact.toLowerCase()}">
+                            ${recommendation.impact} Impact
+                          </span>
+                          ${recommendation.score !== undefined ? `
+                            <span class="lighthouse-widget__audit-score">Score: ${recommendation.score}%</span>
+                          ` : ''}
+                        </div>
+                      </div>
+                      <p class="lighthouse-widget__recommendation-description">${recommendation.description}</p>
+                      ${recommendation.displayValue ? `
+                        <p class="lighthouse-widget__recommendation-value">${recommendation.displayValue}</p>
+                      ` : ''}
+                    </div>
+                  `).join('')}
                 </div>
-              `).join('')}
+              </div>
+            ` : ''}
+            
+            <div class="lighthouse-widget__general-suggestions">
+              <h6 class="lighthouse-widget__section-title">General Best Practices:</h6>
+              <div class="lighthouse-widget__suggestions-list">
+                ${improvementSuggestions[key].map(suggestion => `
+                  <div class="lighthouse-widget__suggestion">
+                    <div class="lighthouse-widget__suggestion-header">
+                      <h6 class="lighthouse-widget__suggestion-title">${suggestion.title}</h6>
+                      <span class="lighthouse-widget__impact lighthouse-widget__impact--${suggestion.impact.toLowerCase()}">
+                        ${suggestion.impact} Impact
+                      </span>
+                    </div>
+                    <p class="lighthouse-widget__suggestion-description">${suggestion.description}</p>
+                  </div>
+                `).join('')}
+              </div>
             </div>
           </div>
         </div>
