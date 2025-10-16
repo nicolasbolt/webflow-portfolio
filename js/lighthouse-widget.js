@@ -310,7 +310,7 @@
           </div>
         </form>
         <div class="lighthouse-widget__results" style="display: none;">
-          <h3 class="lighthouse-widget__results-title">Lighthouse Results</h3>
+          <h3 class="lighthouse-widget__results-title">Results</h3>
           <div class="lighthouse-widget__results-grid"></div>
           <div class="lighthouse-widget__results-meta"></div>
         </div>

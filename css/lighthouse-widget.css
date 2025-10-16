@@ -130,11 +130,11 @@
 
 .lighthouse-widget__results {
   margin-top: 32px;
-  padding: 32px;
-  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-  border: 2px solid #f1f5f9;
-  border-radius: 20px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .lighthouse-widget__results-title {
@@ -419,9 +419,12 @@
 }
 
 .lighthouse-widget__recommendation {
+  background: white;
+  border: 1px solid #e2e8f0;
   border-radius: 10px;
   padding: 20px;
   transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
   word-wrap: break-word;
   overflow-wrap: break-word;
   max-width: 100%;
@@ -431,10 +434,6 @@
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
   border-color: #0ea5e9;
-}
-
-.lighthouse-widget__recommendation--api {
-  border-left: 4px solid #0ea5e9;
 }
 
 .lighthouse-widget__recommendation-header {
