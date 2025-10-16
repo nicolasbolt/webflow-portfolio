@@ -225,6 +225,8 @@
       // Extract API recommendations from audits
       const audits = lighthouseResult.audits || {};
       const apiRecommendations = extractApiRecommendations(audits);
+      console.log(audits)
+      console.log(apiRecommendations)
       
       const scores = {
         performance: Math.round((categoryResults.performance?.score || 0) * 100),
