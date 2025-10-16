@@ -99,7 +99,8 @@
     performanceAudits.forEach(auditId => {
       const audit = audits[auditId];
       if (audit && audit.score !== null && audit.score < 1 && audit.title && audit.description) {
-        const processedDesc = processDescription(audit.description);
+        const friendlyDescription = getFriendlyDescription(auditId, audit.description);
+        const processedDesc = processDescription(friendlyDescription);
         recommendations.performance.push({
           title: audit.title,
           description: typeof processedDesc === 'string' ? processedDesc : processedDesc.text,
@@ -122,7 +123,8 @@
     accessibilityAudits.forEach(auditId => {
       const audit = audits[auditId];
       if (audit && audit.score !== null && audit.score < 1 && audit.title && audit.description) {
-        const processedDesc = processDescription(audit.description);
+        const friendlyDescription = getFriendlyDescription(auditId, audit.description);
+        const processedDesc = processDescription(friendlyDescription);
         recommendations.accessibility.push({
           title: audit.title,
           description: typeof processedDesc === 'string' ? processedDesc : processedDesc.text,
@@ -144,7 +146,8 @@
     bestPracticesAudits.forEach(auditId => {
       const audit = audits[auditId];
       if (audit && audit.score !== null && audit.score < 1 && audit.title && audit.description) {
-        const processedDesc = processDescription(audit.description);
+        const friendlyDescription = getFriendlyDescription(auditId, audit.description);
+        const processedDesc = processDescription(friendlyDescription);
         recommendations.bestPractices.push({
           title: audit.title,
           description: typeof processedDesc === 'string' ? processedDesc : processedDesc.text,
@@ -166,7 +169,8 @@
     seoAudits.forEach(auditId => {
       const audit = audits[auditId];
       if (audit && audit.score !== null && audit.score < 1 && audit.title && audit.description) {
-        const processedDesc = processDescription(audit.description);
+        const friendlyDescription = getFriendlyDescription(auditId, audit.description);
+        const processedDesc = processDescription(friendlyDescription);
         recommendations.seo.push({
           title: audit.title,
           description: typeof processedDesc === 'string' ? processedDesc : processedDesc.text,
@@ -192,25 +196,86 @@
   function processDescription(description) {
     if (!description) return '';
     
-    // Regular expression to find URLs
-    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    // Regular expression to find URLs - more specific to avoid capturing trailing punctuation
+    const urlRegex = /(https?:\/\/[^\s).,;]+)/g;
     const urls = description.match(urlRegex);
     
     if (!urls || urls.length === 0) {
       return description;
     }
     
-    // Remove URLs from description and add "Learn More" link
+    // Remove URLs from description and clean up
     let cleanDescription = description.replace(urlRegex, '').trim();
     
-    // Clean up any trailing punctuation or extra spaces
-    cleanDescription = cleanDescription.replace(/[.,]\s*$/, '');
+    // Clean up any trailing punctuation, parentheses, or extra spaces
+    cleanDescription = cleanDescription.replace(/[.,)\s]+$/, '').trim();
     
     // Return description with Learn More link
     return {
       text: cleanDescription,
       learnMoreUrl: urls[0] // Use the first URL found
     };
+  }
+
+  // Get user-friendly descriptions for common audit recommendations
+  function getFriendlyDescription(auditId, originalDescription) {
+    const friendlyDescriptions = {
+      // Performance
+      'largest-contentful-paint': 'The main content on your page takes too long to load. This affects how quickly users can see and interact with your site.',
+      'first-contentful-paint': 'Your page takes too long to show any content to users. Faster loading improves user experience.',
+      'speed-index': 'Your page content loads slowly. Optimizing images and code can make your site feel much faster.',
+      'cumulative-layout-shift': 'Elements on your page move around while loading, which can be frustrating for users trying to click buttons or read content.',
+      'total-blocking-time': 'Scripts on your page are preventing users from interacting with it quickly. Optimizing JavaScript will make your site more responsive.',
+      'render-blocking-resources': 'Some files are preventing your page from loading quickly. Moving or optimizing these files will speed up your site.',
+      'unused-css-rules': 'Your site is loading CSS styles that aren\'t being used, which slows down loading time.',
+      'unused-javascript': 'Your site is loading JavaScript code that isn\'t being used, which affects performance.',
+      'modern-image-formats': 'Your images could be in more efficient formats (like WebP) to load faster and use less bandwidth.',
+      'efficiently-encode-images': 'Your images aren\'t optimized, making them larger than necessary and slower to load.',
+      'offscreen-images': 'Images that aren\'t visible when the page first loads should be loaded later to improve initial loading speed.',
+      'unminified-css': 'Your CSS files contain extra spaces and comments that make them larger than necessary.',
+      'unminified-javascript': 'Your JavaScript files contain extra spaces and comments that make them larger than necessary.',
+      'server-response-time': 'Your web server takes too long to respond, which delays page loading for all visitors.',
+      'uses-text-compression': 'Your text files aren\'t compressed, making them take longer to download.',
+      'uses-rel-preconnect': 'Your site could load faster by connecting to external services earlier in the loading process.',
+      'uses-rel-preload': 'Important resources could be loaded earlier to improve page speed.',
+      'font-display': 'Your custom fonts could be set up to show text faster while the fonts are loading.',
+
+      // Accessibility
+      'color-contrast': 'Some text on your site is hard to read due to insufficient color contrast, making it difficult for users with vision impairments.',
+      'image-alt': 'Some images are missing descriptions, making them inaccessible to screen readers and users with visual impairments.',
+      'label': 'Some form fields are missing labels, making it difficult for users with disabilities to understand what information to enter.',
+      'link-name': 'Some links don\'t have descriptive text, making it unclear where they lead for screen reader users.',
+      'button-name': 'Some buttons don\'t have clear names, making it confusing for users with disabilities to understand their purpose.',
+      'document-title': 'Your page is missing a title or has a generic title, which affects accessibility and SEO.',
+      'html-has-lang': 'Your page doesn\'t specify its language, which can cause problems for screen readers and translation tools.',
+      'meta-viewport': 'Your page isn\'t set up properly for mobile devices, which can cause accessibility and usability issues.',
+      'heading-order': 'Your page headings aren\'t in the correct order, which can confuse screen reader users navigating your content.',
+      'skip-link': 'Your page is missing a "skip to main content" link, making navigation difficult for keyboard users.',
+
+      // Best Practices
+      'is-on-https': 'Your website isn\'t using HTTPS, which means data sent between users and your site isn\'t encrypted and secure.',
+      'uses-http2': 'Your server could use HTTP/2 to load your site faster and more efficiently.',
+      'no-vulnerable-libraries': 'Your site is using outdated code libraries that have known security vulnerabilities.',
+      'external-anchors-use-rel-noopener': 'Links to other websites should be set up more securely to protect your users.',
+      'geolocation-on-start': 'Your site asks for location permission immediately, which can be annoying and suspicious to users.',
+      'notification-on-start': 'Your site asks for notification permission immediately, which creates a poor user experience.',
+      'no-document-write': 'Your site uses outdated JavaScript methods that can slow down page loading.',
+      'js-libraries': 'Your site is using outdated JavaScript libraries that should be updated for better performance and security.',
+
+      // SEO
+      'document-title': 'Your page title is missing or not optimized, which hurts your search engine rankings.',
+      'meta-description': 'Your page is missing a meta description, which is important for search engine results.',
+      'http-status-code': 'Your page isn\'t returning the correct status code, which can hurt search engine indexing.',
+      'link-text': 'Some of your links use generic text like "click here" instead of descriptive text that helps with SEO.',
+      'is-crawlable': 'Search engines are being blocked from indexing your page, which will hurt your search rankings.',
+      'robots-txt': 'Your robots.txt file has issues that might prevent search engines from properly indexing your site.',
+      'hreflang': 'If your site serves multiple languages, it needs proper language tags for international SEO.',
+      'canonical': 'Your page needs canonical tags to prevent duplicate content issues in search results.',
+      'font-size': 'Some text on your page is too small for mobile users, which can hurt mobile search rankings.',
+      'tap-targets': 'Some buttons and links on mobile are too small or too close together, making them hard to tap.'
+    };
+
+    return friendlyDescriptions[auditId] || originalDescription;
   }
 
   // API call to Cloudflare Pages Function
