@@ -99,9 +99,11 @@
     performanceAudits.forEach(auditId => {
       const audit = audits[auditId];
       if (audit && audit.score !== null && audit.score < 1 && audit.title && audit.description) {
+        const processedDesc = processDescription(audit.description);
         recommendations.performance.push({
           title: audit.title,
-          description: audit.description,
+          description: typeof processedDesc === 'string' ? processedDesc : processedDesc.text,
+          learnMoreUrl: typeof processedDesc === 'object' ? processedDesc.learnMoreUrl : null,
           impact: getImpactLevel(audit.score),
           score: Math.round(audit.score * 100),
           displayValue: audit.displayValue || ''
@@ -120,9 +122,11 @@
     accessibilityAudits.forEach(auditId => {
       const audit = audits[auditId];
       if (audit && audit.score !== null && audit.score < 1 && audit.title && audit.description) {
+        const processedDesc = processDescription(audit.description);
         recommendations.accessibility.push({
           title: audit.title,
-          description: audit.description,
+          description: typeof processedDesc === 'string' ? processedDesc : processedDesc.text,
+          learnMoreUrl: typeof processedDesc === 'object' ? processedDesc.learnMoreUrl : null,
           impact: getImpactLevel(audit.score),
           score: Math.round(audit.score * 100),
           displayValue: audit.displayValue || ''
@@ -140,9 +144,11 @@
     bestPracticesAudits.forEach(auditId => {
       const audit = audits[auditId];
       if (audit && audit.score !== null && audit.score < 1 && audit.title && audit.description) {
+        const processedDesc = processDescription(audit.description);
         recommendations.bestPractices.push({
           title: audit.title,
-          description: audit.description,
+          description: typeof processedDesc === 'string' ? processedDesc : processedDesc.text,
+          learnMoreUrl: typeof processedDesc === 'object' ? processedDesc.learnMoreUrl : null,
           impact: getImpactLevel(audit.score),
           score: Math.round(audit.score * 100),
           displayValue: audit.displayValue || ''
@@ -160,9 +166,11 @@
     seoAudits.forEach(auditId => {
       const audit = audits[auditId];
       if (audit && audit.score !== null && audit.score < 1 && audit.title && audit.description) {
+        const processedDesc = processDescription(audit.description);
         recommendations.seo.push({
           title: audit.title,
-          description: audit.description,
+          description: typeof processedDesc === 'string' ? processedDesc : processedDesc.text,
+          learnMoreUrl: typeof processedDesc === 'object' ? processedDesc.learnMoreUrl : null,
           impact: getImpactLevel(audit.score),
           score: Math.round(audit.score * 100),
           displayValue: audit.displayValue || ''
@@ -178,6 +186,31 @@
     if (score === 0) return 'High';
     if (score < 0.5) return 'Medium';
     return 'Low';
+  }
+
+  // Process description text and convert URLs to "Learn More" links
+  function processDescription(description) {
+    if (!description) return '';
+    
+    // Regular expression to find URLs
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    const urls = description.match(urlRegex);
+    
+    if (!urls || urls.length === 0) {
+      return description;
+    }
+    
+    // Remove URLs from description and add "Learn More" link
+    let cleanDescription = description.replace(urlRegex, '').trim();
+    
+    // Clean up any trailing punctuation or extra spaces
+    cleanDescription = cleanDescription.replace(/[.,]\s*$/, '');
+    
+    // Return description with Learn More link
+    return {
+      text: cleanDescription,
+      learnMoreUrl: urls[0] // Use the first URL found
+    };
   }
 
   // API call to Cloudflare Pages Function
@@ -326,6 +359,11 @@
                         </div>
                       </div>
                       <p class="lighthouse-widget__recommendation-description">${recommendation.description}</p>
+                      ${recommendation.learnMoreUrl ? `
+                        <a href="${recommendation.learnMoreUrl}" target="_blank" rel="noopener noreferrer" class="lighthouse-widget__learn-more">
+                          Learn More
+                        </a>
+                      ` : ''}
                       ${recommendation.displayValue ? `
                         <p class="lighthouse-widget__recommendation-value">${recommendation.displayValue}</p>
                       ` : ''}

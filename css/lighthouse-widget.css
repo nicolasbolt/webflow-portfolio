@@ -419,12 +419,12 @@
 }
 
 .lighthouse-widget__recommendation {
-  background: white;
-  border: 1px solid #e2e8f0;
   border-radius: 10px;
   padding: 20px;
   transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
 }
 
 .lighthouse-widget__recommendation:hover {
@@ -443,6 +443,7 @@
   align-items: flex-start;
   margin-bottom: 12px;
   gap: 16px;
+  flex-wrap: wrap;
 }
 
 .lighthouse-widget__recommendation-title {
@@ -452,6 +453,9 @@
   margin: 0;
   line-height: 1.4;
   flex: 1;
+  min-width: 200px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .lighthouse-widget__recommendation-meta {
@@ -477,6 +481,9 @@
   font-size: 0.95rem;
   line-height: 1.6;
   margin: 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 .lighthouse-widget__recommendation-value {
@@ -489,6 +496,42 @@
   border: 1px solid #bae6fd;
   border-radius: 8px;
   font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+.lighthouse-widget__learn-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #0ea5e9;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-top: 12px;
+  padding: 8px 16px;
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.lighthouse-widget__learn-more:hover {
+  background: #e0f2fe;
+  border-color: #0ea5e9;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(14, 165, 233, 0.2);
+}
+
+.lighthouse-widget__learn-more:after {
+  content: '→';
+  font-size: 0.8rem;
+  transition: transform 0.2s ease;
+}
+
+.lighthouse-widget__learn-more:hover:after {
+  transform: translateX(2px);
 }
 
 /* Success Message Styles */
