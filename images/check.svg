@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" role="img" aria-label="Success">
+  <title>Success</title>
+  <circle cx="12" cy="12" r="11" fill="#38A169"/>
+  <polyline points="7 13 11 17 17 8" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
