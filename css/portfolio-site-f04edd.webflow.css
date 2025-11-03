@@ -40,6 +40,11 @@ p {
   padding-right: 40px;
 }
 
+.herosection {
+  margin-top: 10px;
+  padding-bottom: 40px;
+}
+
 .heropname {
   margin-bottom: 10px;
   font-size: 18px;
@@ -753,6 +758,7 @@ p {
   margin-bottom: 8px;
   font-size: 18px;
   font-weight: 300;
+  list-style-type: decimal;
 }
 
 .boldp {
@@ -923,7 +929,12 @@ p {
   background-color: #f5f5f5;
 }
 
-.list, .div-block-38 {
+.list {
+  margin-left: 40px;
+  list-style-type: decimal;
+}
+
+.div-block-38 {
   margin-left: 40px;
 }
 
@@ -934,6 +945,98 @@ p {
 
 .div-block-40 {
   margin-top: 60px;
+}
+
+.list-item-2 {
+  margin-top: 30px;
+  margin-bottom: 8px;
+  font-size: 18px;
+  font-weight: 300;
+  list-style-type: decimal;
+}
+
+.div-block-41 {
+  margin-top: 40px;
+}
+
+.div-block-42 {
+  grid-column-gap: 12px;
+  grid-row-gap: 12px;
+  display: flex;
+}
+
+.image-21 {
+  float: right;
+  border-radius: 5px;
+  max-width: 30%;
+  margin-left: 40px;
+  box-shadow: 0 2px 5px #0003;
+}
+
+.strategyimg {
+  float: left;
+  border-radius: 5px;
+  max-width: 36%;
+  margin-left: 0;
+  margin-right: 40px;
+  box-shadow: 0 2px 5px #0003;
+}
+
+.blogsection {
+  margin-top: 40px;
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.blogsection.projectsection {
+  margin-bottom: 100px;
+}
+
+.blogsection.darksection {
+  background-color: #f5f5f5;
+}
+
+.blogheading2 {
+  text-align: left;
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 42px;
+  font-weight: 300;
+  line-height: 60px;
+}
+
+.blogheading3 {
+  margin-top: 40px;
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 38px;
+}
+
+.blogheading3.centeredheading {
+  text-align: center;
+}
+
+.strategyimg2 {
+  float: left;
+  border-radius: 5px;
+  max-width: 30%;
+  margin-left: 0;
+  margin-right: 40px;
+  box-shadow: 0 2px 5px #0003;
+}
+
+.image-22 {
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-bottom: 40px;
+  display: block;
+}
+
+.image-23 {
+  border-radius: 5px;
+  margin-top: 60px;
+  display: block;
+  box-shadow: 0 2px 5px #0003;
 }
 
 @media screen and (max-width: 991px) {
@@ -1160,7 +1263,8 @@ p {
   }
 
   .heading2 {
-    font-size: 58px;
+    text-align: left;
+    font-size: 46px;
   }
 
   .workgrid {
@@ -1173,7 +1277,7 @@ p {
   }
 
   .p {
-    max-width: 95vw;
+    max-width: 100%;
   }
 
   .p.ctap {
@@ -1181,6 +1285,7 @@ p {
   }
 
   .div-block-5 {
+    min-height: 250px;
     margin-left: 0;
   }
 
@@ -1268,7 +1373,7 @@ p {
   }
 
   .socialproofdiv {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 
   .imagevert {
@@ -1301,12 +1406,66 @@ p {
     margin-top: 40px;
   }
 
+  .list-item {
+    margin-top: 8px;
+  }
+
   .boldp {
-    max-width: 95vw;
+    max-width: 100%;
   }
 
   .boldp.ctap {
     width: 100%;
+  }
+
+  .image-12 {
+    margin-left: 0;
+    margin-right: auto;
+  }
+
+  .div-block-17 {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .div-block-21 {
+    flex-flow: column;
+  }
+
+  .image-16 {
+    margin-right: auto;
+  }
+
+  .div-block-39 {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .image-21 {
+    float: none;
+    max-width: 50%;
+    margin: 20px auto;
+    display: block;
+  }
+
+  .strategyimg {
+    float: none;
+    max-width: 55%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+
+  .blogheading2 {
+    font-size: 46px;
+  }
+
+  .blogheading3 {
+    font-size: 26px;
+  }
+
+  .list-2, .list-3 {
+    padding-left: 0;
   }
 }
 
@@ -1379,6 +1538,7 @@ p {
 
   .menu-button {
     margin-top: 0;
+    padding-right: 0;
   }
 
   .form {
@@ -1399,6 +1559,8 @@ p {
   }
 
   .socialproofdiv {
+    grid-column-gap: 2px;
+    grid-row-gap: 2px;
     grid-template-rows: auto auto;
     grid-template-columns: 1fr 1fr;
     grid-auto-flow: column;
@@ -1407,6 +1569,10 @@ p {
 
   .mobilebrand {
     margin-top: 20px;
+  }
+
+  .mobilebrand.w--current {
+    padding-left: 0;
   }
 
   .casestudycontainer {
@@ -1475,6 +1641,17 @@ p {
 
   .list {
     margin-bottom: 60px;
+  }
+
+  .blogsection {
+    margin-top: 100px;
+  }
+
+  .blogheading2 {
+    text-align: left;
+    width: 95vw;
+    font-size: 40px;
+    line-height: 55px;
   }
 }
 
