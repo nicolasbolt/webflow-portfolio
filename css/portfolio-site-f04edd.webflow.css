@@ -97,7 +97,7 @@ p {
 }
 
 .div-block-3 {
-  width: 55vw;
+  width: 60vw;
   margin-left: 60px;
 }
 
@@ -1039,6 +1039,31 @@ p {
   box-shadow: 0 2px 5px #0003;
 }
 
+.greycontainer {
+  background-color: #c7c7c7;
+  max-width: 1160px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.div-block-43 {
+  max-width: 35vw;
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.testimonialcontainer {
+  justify-content: flex-start;
+  align-items: center;
+  margin: 20px 40px;
+  display: flex;
+}
+
+.link {
+  color: #3580db;
+}
+
 @media screen and (max-width: 991px) {
   .container {
     width: 95vw;
@@ -1234,6 +1259,10 @@ p {
 
   .image-20, .div-block-37 {
     margin-top: 60px;
+  }
+
+  .greycontainer {
+    width: 95vw;
   }
 }
 
@@ -1652,6 +1681,11 @@ p {
     width: 95vw;
     font-size: 40px;
     line-height: 55px;
+  }
+
+  .greycontainer {
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 
