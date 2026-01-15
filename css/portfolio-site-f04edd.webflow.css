@@ -1595,6 +1595,10 @@ p {
     padding-left: 0;
   }
 
+  .div-block-43 {
+    grid-template-columns: 1fr;
+  }
+
   .div-block-44, .div-block-45 {
     max-width: 90%;
   }
