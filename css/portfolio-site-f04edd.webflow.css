@@ -1167,6 +1167,15 @@ p {
   display: flex;
 }
 
+.heropsubtitle {
+  text-transform: uppercase;
+  width: 95%;
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 36px;
+}
+
 @media screen and (max-width: 991px) {
   .container {
     width: 95vw;
@@ -1366,6 +1375,11 @@ p {
 
   .greycontainer {
     width: 95vw;
+  }
+
+  .heropsubtitle {
+    width: 100%;
+    font-size: 22px;
   }
 }
 
@@ -1607,6 +1621,11 @@ p {
   .div-block-44, .div-block-45 {
     max-width: 90%;
   }
+
+  .heropsubtitle {
+    font-size: 20px;
+    line-height: 38px;
+  }
 }
 
 @media screen and (max-width: 479px) {
@@ -1809,6 +1828,11 @@ p {
     flex-flow: column;
     align-items: center;
     display: block;
+  }
+
+  .heropsubtitle {
+    font-size: 16px;
+    line-height: 36px;
   }
 }
 
