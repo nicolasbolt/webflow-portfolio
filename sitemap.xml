@@ -3,28 +3,28 @@
   <!-- Main Pages -->
   <url>
     <loc>https://nicolasbolt.com/</loc>
-    <lastmod>2025-10-31</lastmod>
+    <lastmod>2026-02-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   
   <url>
     <loc>https://nicolasbolt.com/about</loc>
-    <lastmod>2025-10-31</lastmod>
+    <lastmod>2026-02-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
     <loc>https://nicolasbolt.com/projects</loc>
-    <lastmod>2025-10-31</lastmod>
+    <lastmod>2026-02-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   
   <url>
     <loc>https://nicolasbolt.com/contact-me</loc>
-    <lastmod>2025-10-31</lastmod>
+    <lastmod>2026-02-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -32,21 +32,21 @@
   <!-- Portfolio Projects -->
   <url>
     <loc>https://nicolasbolt.com/projects/summit-shield-roofing</loc>
-    <lastmod>2025-10-31</lastmod>
+    <lastmod>2026-02-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://nicolasbolt.com/projects/finish-line-roofing-and-exteriors</loc>
-    <lastmod>2025-10-31</lastmod>
+    <lastmod>2026-02-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://nicolasbolt.com/projects/cleanline-pressure-washing</loc>
-    <lastmod>2025-10-31</lastmod>
+    <lastmod>2026-02-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -54,7 +54,14 @@
   <!-- Free Tools -->
   <url>
     <loc>https://nicolasbolt.com/free-tools/website-analysis</loc>
-    <lastmod>2025-10-31</lastmod>
+    <lastmod>2026-02-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://nicolasbolt.com/free-tools/free-marketing-starter-kit</loc>
+    <lastmod>2026-02-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
