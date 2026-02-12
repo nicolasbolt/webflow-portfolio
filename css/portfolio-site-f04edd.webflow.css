@@ -199,6 +199,10 @@ p {
   line-height: 60px;
 }
 
+.heading2.leftalign {
+  text-align: left;
+}
+
 .workgrid {
   grid-column-gap: 16px;
   grid-row-gap: 16px;
@@ -1209,6 +1213,10 @@ p {
   line-height: 60px;
 }
 
+.whiteheading2.leftalign {
+  text-align: left;
+}
+
 .blackctablock {
   grid-column-gap: 16px;
   grid-row-gap: 16px;
@@ -1279,6 +1287,22 @@ p {
 
 .whatyougetdiv {
   padding-bottom: 40px;
+}
+
+.casestudysummary {
+  grid-column-gap: 16px;
+  grid-row-gap: 16px;
+  grid-template-rows: auto;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-auto-columns: 1fr;
+  display: grid;
+}
+
+.div-block-49 {
+  max-width: 55%;
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @media screen and (max-width: 991px) {
