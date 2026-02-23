@@ -100,6 +100,9 @@ p {
 
 .div-block-2 {
   align-self: center;
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .div-block-3 {
@@ -178,9 +181,8 @@ p {
 }
 
 .section {
-  margin-top: 140px;
-  padding-top: 60px;
-  padding-bottom: 60px;
+  padding-top: 160px;
+  padding-bottom: 160px;
 }
 
 .section.projectsection {
@@ -1191,9 +1193,8 @@ p {
 
 .blacksection {
   background-color: var(--primary);
-  margin-top: 140px;
-  padding-top: 60px;
-  padding-bottom: 60px;
+  padding-top: 160px;
+  padding-bottom: 160px;
 }
 
 .blacksection.projectsection {
@@ -1272,9 +1273,9 @@ p {
   background-position: 0 0, 0 0;
   background-size: auto, cover;
   background-attachment: scroll, fixed;
-  margin-top: 140px;
-  padding-top: 60px;
-  padding-bottom: 60px;
+  margin-top: 0;
+  padding-top: 160px;
+  padding-bottom: 160px;
 }
 
 .indybgsection.projectsection {
@@ -1303,6 +1304,15 @@ p {
   margin-top: 40px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.casestudiesherodiv {
+  text-align: center;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 175px;
+  font-weight: 300;
+  display: block;
 }
 
 @media screen and (max-width: 991px) {
@@ -1518,6 +1528,10 @@ p {
 
   .whitep {
     max-width: 95vw;
+  }
+
+  .casestudiesherodiv {
+    flex-flow: column;
   }
 }
 
@@ -1777,6 +1791,11 @@ p {
   .whitep.ctap {
     width: 100%;
   }
+
+  .casestudiesherodiv {
+    flex-flow: column;
+    margin-top: 55px;
+  }
 }
 
 @media screen and (max-width: 479px) {
@@ -1787,6 +1806,11 @@ p {
 
   .heropname {
     font-size: 17px;
+  }
+
+  .heading {
+    font-size: 46px;
+    line-height: 54px;
   }
 
   .herop {
@@ -1807,7 +1831,8 @@ p {
   }
 
   .section {
-    margin-top: 100px;
+    padding-top: 100px;
+    padding-bottom: 100px;
   }
 
   .heading2 {
@@ -1929,6 +1954,7 @@ p {
   }
 
   .div-block-20 {
+    padding-top: 10px;
     padding-right: 0;
   }
 
@@ -1987,14 +2013,15 @@ p {
   }
 
   .blacksection {
-    margin-top: 100px;
+    padding-top: 100px;
+    padding-bottom: 100px;
   }
 
   .whiteheading2 {
     text-align: left;
     width: 95vw;
     font-size: 40px;
-    line-height: 55px;
+    line-height: 44px;
   }
 
   .whitep {
@@ -2004,7 +2031,12 @@ p {
   }
 
   .indybgsection {
-    margin-top: 100px;
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+
+  .div-block-49 {
+    max-width: 95%;
   }
 }
 
