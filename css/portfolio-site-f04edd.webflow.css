@@ -441,8 +441,8 @@ p {
 .worklogo {
   background-color: #fff;
   border-radius: 5px;
-  max-height: 330px;
-  margin-left: auto;
+  max-height: 278px;
+  margin-left: 0;
   margin-right: auto;
   display: block;
   box-shadow: 0 2px 5px #0003;
@@ -618,11 +618,13 @@ p {
   grid-column-gap: 8px;
   grid-row-gap: 8px;
   grid-template-rows: auto;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-auto-columns: 1fr;
-  max-width: 75%;
-  margin: 60px auto 60px 0;
-  display: grid;
+  justify-content: space-between;
+  align-items: center;
+  width: 55vw;
+  margin: 60px auto;
+  display: flex;
 }
 
 .badgeimg {
@@ -1083,7 +1085,7 @@ p {
 .div-block-43 {
   grid-column-gap: 16px;
   grid-row-gap: 16px;
-  grid-template-rows: auto auto;
+  grid-template-rows: auto;
   grid-template-columns: 1fr 1fr;
   grid-auto-columns: 1fr;
   margin-top: 40px;
@@ -1192,7 +1194,7 @@ p {
 }
 
 .blacksection {
-  background-color: var(--primary);
+  background-color: #f7f7f7;
   padding-top: 160px;
   padding-bottom: 160px;
 }
@@ -1315,6 +1317,20 @@ p {
   display: block;
 }
 
+.blacksectionsocialproof {
+  background-color: #f7f7f7;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.blacksectionsocialproof.projectsection {
+  margin-bottom: 100px;
+}
+
+.blacksectionsocialproof.darksection {
+  background-color: #f5f5f5;
+}
+
 @media screen and (max-width: 991px) {
   .container {
     width: 95vw;
@@ -1429,6 +1445,9 @@ p {
   }
 
   .socialproofdiv {
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    flex-flow: wrap;
     grid-template-columns: 1fr 1fr;
   }
 
@@ -1894,11 +1913,12 @@ p {
   }
 
   .socialproofdiv {
-    grid-column-gap: 2px;
-    grid-row-gap: 2px;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
     grid-template-rows: auto auto;
     grid-template-columns: 1fr 1fr;
     grid-auto-flow: column;
+    width: 85vw;
     max-width: 95vw;
   }
 
@@ -2038,13 +2058,18 @@ p {
   .div-block-49 {
     max-width: 95%;
   }
+
+  .blacksectionsocialproof {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
 }
 
-#w-node-_409b3c20-a4fe-a5fa-85a3-53191b193cac-dac0bf68, #w-node-_00dd4ca6-01e5-ec84-a905-1c5293c42f29-dac0bf68, #w-node-b66e6521-50af-e752-81cb-b240ee2bae59-dac0bf68 {
+#w-node-_409b3c20-a4fe-a5fa-85a3-53191b193cac-dac0bf68, #w-node-b66e6521-50af-e752-81cb-b240ee2bae59-dac0bf68 {
   place-self: center;
 }
 
-#w-node-d63d111f-9ca4-9cfa-604a-5fdebad58b54-dac0bf68, #w-node-d63d111f-9ca4-9cfa-604a-5fdebad58b5d-dac0bf68 {
+#w-node-d63d111f-9ca4-9cfa-604a-5fdebad58b54-dac0bf68, #w-node-d63d111f-9ca4-9cfa-604a-5fdebad58b5d-dac0bf68, #w-node-b127b754-cced-1c4b-d331-97bcbfdcb33c-dac0bf68 {
   grid-area: span 1 / span 2 / span 1 / span 2;
 }
 
