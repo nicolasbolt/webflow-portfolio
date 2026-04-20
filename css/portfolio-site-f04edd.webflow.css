@@ -525,6 +525,9 @@ li {
 
 .projectimg {
   border-radius: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
   box-shadow: 0 2px 5px #0003;
 }
 
@@ -1669,6 +1672,7 @@ li {
 
 .textsection {
   margin-bottom: 100px;
+  padding-top: 20px;
 }
 
 .full-width {
@@ -1706,13 +1710,13 @@ li {
 .service-icon {
   float: left;
   border: 2px solid var(--primary);
+  width: 40px;
+  height: 40px;
   color: var(--primary);
   text-align: center;
   border-radius: 50%;
   justify-content: center;
   align-items: center;
-  width: 40px;
-  height: 40px;
   margin-top: 11px;
   margin-bottom: 0;
   padding: 0;
@@ -1755,13 +1759,13 @@ li {
 .service-icon2 {
   float: left;
   border: 2px solid var(--primary);
+  width: 40px;
+  height: 40px;
   color: var(--primary);
   text-align: center;
   border-radius: 50%;
   justify-content: center;
   align-items: center;
-  width: 40px;
-  height: 40px;
   margin-top: auto;
   margin-bottom: auto;
   margin-right: 10px;
@@ -1794,6 +1798,53 @@ li {
 
 .heading3nomargin.blackbgtext {
   font-weight: 400;
+}
+
+.servicepageimgdiv {
+  width: 50vw;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.sectionsocialproof {
+  background-color: #fff;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.sectionsocialproof.projectsection {
+  margin-bottom: 100px;
+}
+
+.sectionsocialproof.darksection {
+  background-color: #f5f5f5;
+}
+
+.servicesectionhero {
+  padding-top: 100px;
+  padding-bottom: 160px;
+}
+
+.servicesectionhero.projectsection {
+  margin-bottom: 100px;
+}
+
+.servicesectionhero.darksection {
+  background-color: #f5f5f5;
+}
+
+.div-block-57 {
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 60px;
+  display: flex;
+}
+
+.serviceherop {
+  text-align: center;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @media screen and (max-width: 991px) {
@@ -2063,6 +2114,10 @@ li {
     margin-right: 0;
     display: flex;
   }
+
+  .servicepageimgdiv {
+    width: 75vw;
+  }
 }
 
 @media screen and (max-width: 767px) {
@@ -2201,6 +2256,7 @@ li {
   }
 
   .socialproofdiv {
+    flex-flow: column;
     grid-template-columns: 1fr 1fr;
   }
 
@@ -2340,8 +2396,12 @@ li {
     align-items: stretch;
   }
 
-  .servicepageimg {
+  .serviceimg, .servicepageimg {
     width: 100%;
+  }
+
+  .textsection {
+    padding-top: 0;
   }
 
   .question-container {
@@ -2352,6 +2412,10 @@ li {
 
   .image-24 {
     width: 65vw;
+  }
+
+  .servicepageimgdiv {
+    width: 100%;
   }
 }
 
@@ -2624,6 +2688,10 @@ li {
     padding-bottom: 100px;
   }
 
+  .textsection {
+    padding-top: 0;
+  }
+
   .service-icon {
     display: none;
   }
@@ -2644,6 +2712,15 @@ li {
   .service-icon2 {
     display: none;
   }
+
+  .sectionsocialproof, .servicesectionhero {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+
+  .serviceherop {
+    width: 90%;
+  }
 }
 
 #w-node-_409b3c20-a4fe-a5fa-85a3-53191b193cac-dac0bf68, #w-node-b66e6521-50af-e752-81cb-b240ee2bae59-dac0bf68 {
@@ -2658,7 +2735,7 @@ li {
   align-self: center;
 }
 
-#w-node-d63d111f-9ca4-9cfa-604a-5fdebad58b54-dac0bf68, #w-node-d63d111f-9ca4-9cfa-604a-5fdebad58b5d-dac0bf68, #w-node-b127b754-cced-1c4b-d331-97bcbfdcb33c-dac0bf68 {
+#w-node-d63d111f-9ca4-9cfa-604a-5fdebad58b54-dac0bf68, #w-node-_7fdccb57-34dd-b3a8-ebe7-b5ed5c0c3368-dac0bf68, #w-node-d63d111f-9ca4-9cfa-604a-5fdebad58b5d-dac0bf68, #w-node-b127b754-cced-1c4b-d331-97bcbfdcb33c-dac0bf68 {
   grid-area: span 1 / span 2 / span 1 / span 2;
 }
 
