@@ -1890,6 +1890,102 @@ li {
   padding-bottom: 20px;
 }
 
+.bas-wrapper {
+  border-radius: 5px;
+  width: 100%;
+  max-width: 700px;
+  height: 500px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 5px #0003;
+}
+
+.bas-image-before {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.bas-image-after-h {
+  z-index: 1;
+  object-fit: cover;
+  width: 50%;
+  height: 100%;
+  margin-left: auto;
+  display: block;
+  position: absolute;
+  inset: 0;
+}
+
+.bas-handle-h {
+  z-index: 2;
+  background-color: #fff;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+  width: 84px;
+  height: 63px;
+  padding: 0;
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 2px 5px #0003;
+}
+
+.bas-line-h {
+  z-index: 1;
+  background-color: #fff;
+  width: 2px;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.bas-label-before-h {
+  z-index: 3;
+  color: #000;
+  cursor: pointer;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 4px 12px;
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  box-shadow: 0 2px 5px #0003;
+}
+
+.bas-label-after-h {
+  z-index: 3;
+  color: #000;
+  cursor: pointer;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 4px 12px;
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  box-shadow: 0 2px 5px #0003;
+}
+
+.div-block-59 {
+  justify-content: center;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  display: flex;
+}
+
+.image-26 {
+  width: 100%;
+}
+
 @media screen and (max-width: 991px) {
   .container {
     width: 95vw;
