@@ -336,13 +336,14 @@ li {
 
 .div-block-5 {
   flex-flow: column;
+  align-items: flex-start;
   min-height: 265px;
   margin-left: 0;
   display: flex;
 }
 
 .heading3 {
-  align-self: center;
+  align-self: flex-start;
   margin-top: 40px;
   font-size: 32px;
   font-weight: 300;
@@ -526,7 +527,7 @@ li {
 
 .projectimg {
   border-radius: 5px;
-  margin-left: auto;
+  margin-left: 0;
   margin-right: auto;
   display: block;
   box-shadow: 0 2px 5px #0003;
