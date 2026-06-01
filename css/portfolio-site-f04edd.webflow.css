@@ -1287,7 +1287,7 @@ li {
 }
 
 .blacksection {
-  background-color: #f7f7f7;
+  background-color: #f5f5f5;
   padding-top: 160px;
   padding-bottom: 160px;
 }
@@ -1986,6 +1986,40 @@ li {
   width: 100%;
 }
 
+.productgrid {
+  grid-template-rows: auto;
+  grid-template-columns: 1fr 1fr;
+}
+
+.ctabuttondiv {
+  width: 200px;
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.list-item-3 {
+  margin-left: 40px;
+  list-style-type: disc;
+}
+
+.boldlist {
+  margin-top: 20px;
+  list-style-type: decimal;
+}
+
+.list-item-4, .list-item-5, .list-item-6, .list-item-7, .list-item-8 {
+  list-style-type: decimal;
+}
+
+.probtransformationimgs {
+  max-width: 750px;
+  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
 @media screen and (max-width: 991px) {
   .container {
     width: 95vw;
@@ -2162,10 +2196,12 @@ li {
 
   .div-block-19 {
     flex-flow: column-reverse;
+    align-items: stretch;
     display: flex;
   }
 
   .image-15 {
+    align-self: flex-start;
     max-width: 80vw;
     margin-top: 40px;
   }
@@ -2260,6 +2296,14 @@ li {
 
   .leadtext, .leadlist {
     width: 70vw;
+  }
+
+  .productgrid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .probtransformationimgs {
+    max-width: 700px;
   }
 }
 
@@ -2563,6 +2607,14 @@ li {
 
   .servicepageimgdiv, .leadtext, .leadlist {
     width: 100%;
+  }
+
+  .productgrid {
+    grid-template-columns: 1fr;
+  }
+
+  .probtransformationimgs {
+    max-width: 550px;
   }
 }
 
@@ -2868,6 +2920,10 @@ li {
   .serviceherop {
     width: 90%;
   }
+
+  .probtransformationimgs {
+    max-width: 350px;
+  }
 }
 
 #w-node-_409b3c20-a4fe-a5fa-85a3-53191b193cac-dac0bf68, #w-node-b66e6521-50af-e752-81cb-b240ee2bae59-dac0bf68 {
@@ -2912,7 +2968,7 @@ li {
   place-self: center;
 }
 
-#w-node-_4e3b973b-1ec6-077e-10f9-46f35d378e33-dec851e5, #w-node-_69009100-3395-3c95-82eb-6b17f4ca25c9-dec851e5, #w-node-_5a1aee48-a5bd-44a6-3374-89786f2a71ab-dec851e5 {
+#w-node-_048e73f0-9b00-2386-9189-b579169d9606-dec851e5, #w-node-_048e73f0-9b00-2386-9189-b579169d960b-dec851e5, #w-node-_4e3b973b-1ec6-077e-10f9-46f35d378e33-dec851e5, #w-node-_69009100-3395-3c95-82eb-6b17f4ca25c9-dec851e5, #w-node-_5a1aee48-a5bd-44a6-3374-89786f2a71ab-dec851e5 {
   grid-area: span 1 / span 1 / span 1 / span 1;
 }
 
