@@ -1,4 +1,4 @@
-/* Google Review QR Widget CSS */
+/* Google Review Link Widget CSS */
 
 .review-qr-widget {
   padding: 40px;
@@ -253,59 +253,6 @@
 
 .review-qr-widget__copy-btn--copied {
   background: #10b981;
-}
-
-/* QR code */
-.review-qr-widget__qr-section {
-  text-align: center;
-  margin-bottom: 24px;
-}
-
-.review-qr-widget__qr-label {
-  color: #374151;
-  font-size: 0.875rem;
-  font-weight: 600;
-  margin: 0 0 16px 0;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.review-qr-widget__qr-container {
-  display: inline-block;
-  padding: 20px;
-  background: #ffffff;
-  border: 2px solid #e5e7eb;
-  border-radius: 16px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-  margin-bottom: 12px;
-}
-
-.review-qr-widget__qr-hint {
-  color: #6b7280;
-  font-size: 0.8rem;
-  font-weight: 500;
-  margin: 0 0 16px 0;
-}
-
-.review-qr-widget__download-btn {
-  padding: 12px 24px;
-  background: #000000;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  letter-spacing: -0.01em;
-  font-family: inherit;
-}
-
-.review-qr-widget__download-btn:hover {
-  background: #1a1a1a;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
 }
 
 /* Reset */

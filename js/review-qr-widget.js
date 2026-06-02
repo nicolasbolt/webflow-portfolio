@@ -1,6 +1,6 @@
 /**
- * Google Review QR Widget - Vanilla JavaScript
- * Generates a direct Google Review link and downloadable QR code from a Google Maps URL.
+ * Google Review Link Widget - Vanilla JavaScript
+ * Generates a direct Google Review link from a Google Maps URL.
  * No API keys required — 100% client-side.
  */
 (function () {
@@ -56,19 +56,6 @@
     );
   }
 
-  /**
-   * Strip characters that are unsafe in filenames and normalise to kebab-case.
-   */
-  function sanitizeFilename(name) {
-    return (
-      (name || "google-review")
-        .replace(/[^a-zA-Z0-9\-_ ]/g, "")
-        .trim()
-        .replace(/\s+/g, "-")
-        .toLowerCase() || "google-review"
-    );
-  }
-
   function createWidgetHTML(title) {
     const id = generateId();
 
@@ -76,7 +63,7 @@
       <div class="review-qr-widget" id="${id}">
         <h2 class="review-qr-widget__title">${title}</h2>
         <p class="review-qr-widget__subtitle">
-          Generate a direct Google review link and printable QR code for your business — no tech skills needed.
+          Generate a direct Google review link for your business — no tech skills needed.
         </p>
 
         <form class="review-qr-widget__form">
@@ -130,13 +117,13 @@
           </div>
 
           <button type="submit" class="review-qr-widget__submit-btn">
-            Generate Review Link &amp; QR Code
+            Generate Review Link
           </button>
 
         </form>
 
         <div class="review-qr-widget__results" style="display:none;">
-          <h3 class="review-qr-widget__results-title">Your Review Link &amp; QR Code</h3>
+          <h3 class="review-qr-widget__results-title">Your Review Link</h3>
 
           <div class="review-qr-widget__fallback-notice" style="display:none;">
             <strong>Heads up:</strong> We couldn't find your exact listing in that URL, so this link opens a
@@ -150,17 +137,6 @@
               <p class="review-qr-widget__link-text"></p>
               <button type="button" class="review-qr-widget__copy-btn">Copy</button>
             </div>
-          </div>
-
-          <div class="review-qr-widget__qr-section">
-            <p class="review-qr-widget__qr-label">QR Code</p>
-            <div class="review-qr-widget__qr-container">
-              <div class="review-qr-widget__qr-canvas"></div>
-            </div>
-            <p class="review-qr-widget__qr-hint">
-              Print this on invoices, yard signs, business cards, or anywhere customers will see it.
-            </p>
-            <button type="button" class="review-qr-widget__download-btn">&#11015; Download QR Code (PNG)</button>
           </div>
 
           <button type="button" class="review-qr-widget__reset-btn">&#8592; Start Over</button>
@@ -182,10 +158,6 @@
     );
     var linkText = container.querySelector(".review-qr-widget__link-text");
     var copyBtn = container.querySelector(".review-qr-widget__copy-btn");
-    var qrCanvas = container.querySelector(".review-qr-widget__qr-canvas");
-    var downloadBtn = container.querySelector(
-      ".review-qr-widget__download-btn",
-    );
     var resetBtn = container.querySelector(".review-qr-widget__reset-btn");
 
     var currentReviewUrl = "";
@@ -230,24 +202,6 @@
       // Populate the link text — textContent prevents XSS
       linkText.textContent = reviewUrl;
 
-      // Clear any previous QR output
-      qrCanvas.innerHTML = "";
-
-      // Render QR code via qrcode.js
-      if (typeof QRCode !== "undefined") {
-        new QRCode(qrCanvas, {
-          text: reviewUrl,
-          width: 220,
-          height: 220,
-          colorDark: "#000000",
-          colorLight: "#ffffff",
-          correctLevel: QRCode.CorrectLevel.M,
-        });
-      } else {
-        qrCanvas.innerHTML =
-          '<p style="color:#ef4444;font-size:0.85rem;margin:0;">QR library failed to load. Please refresh the page and try again.</p>';
-      }
-
       // Swap form for results
       form.style.display = "none";
       resultsSection.style.display = "block";
@@ -272,25 +226,11 @@
       }
     });
 
-    // ── Download QR as PNG ─────────────────────────────────────────────────────
-    downloadBtn.addEventListener("click", function () {
-      var canvas = qrCanvas.querySelector("canvas");
-      if (!canvas) return;
-
-      var filename =
-        sanitizeFilename(nameInput.value.trim()) + "-google-review-qr.png";
-      var link = document.createElement("a");
-      link.download = filename;
-      link.href = canvas.toDataURL("image/png");
-      link.click();
-    });
-
     // ── Start Over ─────────────────────────────────────────────────────────────
     resetBtn.addEventListener("click", function () {
       form.reset();
       form.style.display = "flex";
       resultsSection.style.display = "none";
-      qrCanvas.innerHTML = "";
       currentReviewUrl = "";
       copyBtn.textContent = "Copy";
       copyBtn.classList.remove("review-qr-widget__copy-btn--copied");
@@ -329,7 +269,7 @@
   function initWidget(container) {
     if (container.dataset.initialized) return;
 
-    var title = container.dataset.title || "Google Review QR Generator";
+    var title = container.dataset.title || "Google Review Link Generator";
     container.innerHTML = createWidgetHTML(title);
     setupHandlers(container);
     container.dataset.initialized = "true";
