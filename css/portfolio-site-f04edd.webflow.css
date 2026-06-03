@@ -1839,6 +1839,8 @@ li {
 }
 
 .div-block-57 {
+  grid-column-gap: 25px;
+  grid-row-gap: 25px;
   justify-content: center;
   margin-top: 20px;
   margin-bottom: 60px;
@@ -2064,6 +2066,65 @@ li {
   display: inline-block;
   transform: translate(0);
   box-shadow: 0 2px 5px 2px #0003;
+}
+
+.marketingsystemgrid {
+  grid-template-rows: auto;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.priceavg {
+  color: #4d4d4d;
+  text-align: center;
+  font-size: 38px;
+  font-weight: 500;
+}
+
+.avgpricetext {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 300;
+}
+
+.div-block-61 {
+  grid-column-gap: 15px;
+  grid-row-gap: 15px;
+  align-items: center;
+  margin-bottom: 5px;
+  display: flex;
+}
+
+.offerlist {
+  margin-bottom: 0;
+}
+
+.offerheading, .price {
+  text-align: center;
+}
+
+.roigrid, .beforeandafter {
+  grid-template-rows: auto;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.div-block-62 {
+  grid-column-gap: 25px;
+  grid-row-gap: 25px;
+  align-items: center;
+  margin-bottom: 20px;
+  display: flex;
+}
+
+.detailedstepsheading {
+  margin-top: 10px;
+}
+
+.detailedstepsimg {
+  margin-bottom: 100px;
 }
 
 @media screen and (max-width: 991px) {
@@ -2350,6 +2411,10 @@ li {
 
   .probtransformationimgs {
     max-width: 700px;
+  }
+
+  .marketingsystemgrid, .roigrid, .beforeandafter {
+    grid-template-columns: 1fr 1fr;
   }
 }
 
@@ -2666,6 +2731,10 @@ li {
   .productcard {
     margin-top: 40px;
   }
+
+  .marketingsystemgrid, .roigrid, .beforeandafter {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media screen and (max-width: 479px) {
@@ -2688,7 +2757,12 @@ li {
     line-height: 36px;
   }
 
-  .primarybtn, .secondarybtn {
+  .primarybtn {
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .secondarybtn {
     margin-top: 10px;
   }
 
@@ -3033,6 +3107,10 @@ li {
 #w-node-_6f992944-0e4f-d32e-b4d1-f520b495fdda-74e57ff7 {
   grid-area: span 1 / span 5 / span 1 / span 5;
   place-self: center;
+}
+
+#w-node-b23f2059-8d51-51a8-5561-1c1cf71c8e27-47a437ac, #w-node-b23f2059-8d51-51a8-5561-1c1cf71c8e3e-47a437ac, #w-node-_71794d49-816b-42e7-93f6-1da361e77235-47a437ac, #w-node-_94990835-5ea7-2919-6f78-0ae1caa72ad1-47a437ac, #w-node-_049e9457-b85d-b32d-fb99-d6babe70a5c4-47a437ac, #w-node-_6d90bde5-d0e4-35b1-aad8-f323da641e11-47a437ac, #w-node-_6d90bde5-d0e4-35b1-aad8-f323da641e16-47a437ac, #w-node-_901c2cf4-1a59-357c-2d99-400f992397bf-47a437ac, #w-node-_901c2cf4-1a59-357c-2d99-400f992397c4-47a437ac, #w-node-_901c2cf4-1a59-357c-2d99-400f992397c9-47a437ac {
+  grid-area: span 1 / span 1 / span 1 / span 1;
 }
 
 
