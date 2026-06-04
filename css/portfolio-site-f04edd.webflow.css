@@ -424,7 +424,7 @@ li {
   margin-bottom: 12px;
   font-size: 20px;
   font-weight: 400;
-  line-height: 16px;
+  line-height: 22px;
 }
 
 .footer-link {
@@ -2780,7 +2780,7 @@ li {
   }
 
   .heading2 {
-    text-align: center;
+    text-align: left;
     width: 95vw;
     font-size: 40px;
     line-height: 55px;
@@ -3109,8 +3109,21 @@ li {
   place-self: center;
 }
 
+#w-node-_5b3799ac-cfd7-4ba4-1d11-3fbecf31cf9a-47a437ac, #w-node-_5b3799ac-cfd7-4ba4-1d11-3fbecf31cf9c-47a437ac {
+  place-self: center;
+}
+
 #w-node-b23f2059-8d51-51a8-5561-1c1cf71c8e27-47a437ac, #w-node-b23f2059-8d51-51a8-5561-1c1cf71c8e3e-47a437ac, #w-node-_71794d49-816b-42e7-93f6-1da361e77235-47a437ac, #w-node-_94990835-5ea7-2919-6f78-0ae1caa72ad1-47a437ac, #w-node-_049e9457-b85d-b32d-fb99-d6babe70a5c4-47a437ac, #w-node-_6d90bde5-d0e4-35b1-aad8-f323da641e11-47a437ac, #w-node-_6d90bde5-d0e4-35b1-aad8-f323da641e16-47a437ac, #w-node-_901c2cf4-1a59-357c-2d99-400f992397bf-47a437ac, #w-node-_901c2cf4-1a59-357c-2d99-400f992397c4-47a437ac, #w-node-_901c2cf4-1a59-357c-2d99-400f992397c9-47a437ac {
   grid-area: span 1 / span 1 / span 1 / span 1;
+}
+
+#w-node-d9446061-79cc-1da6-51cc-a4e3b858f7cd-47a437ac {
+  grid-area: span 1 / span 7 / span 1 / span 7;
+}
+
+#w-node-d9446061-79cc-1da6-51cc-a4e3b858f7de-47a437ac {
+  grid-area: span 1 / span 5 / span 1 / span 5;
+  place-self: center;
 }
 
 
