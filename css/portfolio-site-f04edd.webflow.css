@@ -2227,6 +2227,14 @@ li {
     width: 100%;
   }
 
+  .dropdownlink.overflowlink {
+    border-radius: 0;
+  }
+
+  .dropdown-toggle {
+    display: flex;
+  }
+
   .h1subpage {
     font-size: 78px;
     line-height: 90px;
@@ -2256,7 +2264,12 @@ li {
     display: block;
   }
 
-  .dropdown, .dropdown-2 {
+  .dropdown {
+    align-self: center;
+    width: 100%;
+  }
+
+  .dropdown-2 {
     width: 100%;
   }
 
@@ -2362,6 +2375,19 @@ li {
 
   .servicepageimg {
     width: 75vw;
+  }
+
+  .navlink {
+    align-self: flex-start;
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+  }
+
+  .div-block-50 {
+    flex-flow: column;
+    align-items: center;
   }
 
   .articlecontainer {
