@@ -2669,6 +2669,28 @@ li {
   .industryherotext {
     max-width: 100%;
   }
+
+  .slide {
+    background-size: contain;
+    width: 100%;
+  }
+
+  .slide-2 {
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  .slider {
+    height: 600px;
+  }
+
+  .div-block-65 {
+    width: 100%;
+  }
+
+  .slide-4 {
+    background-size: contain;
+  }
 }
 
 @media screen and (max-width: 767px) {
@@ -3001,6 +3023,14 @@ li {
   .industryherotext {
     max-width: 95vw;
   }
+
+  .slider {
+    height: 500px;
+  }
+
+  .div-block-65 {
+    width: 100%;
+  }
 }
 
 @media screen and (max-width: 479px) {
@@ -3325,6 +3355,10 @@ li {
 
   .centered-heading {
     margin-bottom: 24px;
+  }
+
+  .slider {
+    height: 350px;
   }
 }
 
