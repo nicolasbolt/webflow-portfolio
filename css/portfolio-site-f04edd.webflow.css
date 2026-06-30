@@ -3430,4 +3430,22 @@ li {
   place-self: center;
 }
 
+#w-node-_6dd99f2d-d20d-bec7-ff42-10305f346b32-d3008746 {
+  grid-area: span 1 / span 7 / span 1 / span 7;
+}
+
+#w-node-_6dd99f2d-d20d-bec7-ff42-10305f346b43-d3008746 {
+  grid-area: span 1 / span 5 / span 1 / span 5;
+  place-self: center;
+}
+
+#w-node-_6dd99f2d-d20d-bec7-ff42-10305f346b32-34efe319 {
+  grid-area: span 1 / span 7 / span 1 / span 7;
+}
+
+#w-node-_6dd99f2d-d20d-bec7-ff42-10305f346b43-34efe319 {
+  grid-area: span 1 / span 5 / span 1 / span 5;
+  place-self: center;
+}
+
 
