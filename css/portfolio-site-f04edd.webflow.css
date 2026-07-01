@@ -1694,7 +1694,7 @@ li {
   cursor: pointer;
   background-color: #fff;
   border: 1px solid #b1b1b133;
-  border-radius: 8px;
+  border-radius: 2px;
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
@@ -2000,8 +2000,8 @@ li {
 }
 
 .ctabuttondiv {
-  width: 200px;
-  margin-top: 40px;
+  text-align: center;
+  margin-top: 10px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -2324,6 +2324,10 @@ li {
 
 .mask {
   border-radius: 5px;
+}
+
+.marketingp {
+  text-align: center;
 }
 
 @media screen and (max-width: 991px) {
@@ -3311,6 +3315,10 @@ li {
     padding-top: 0;
   }
 
+  .question-container {
+    border-radius: 2px;
+  }
+
   .service-icon {
     display: none;
   }
@@ -3355,6 +3363,10 @@ li {
 
   .centered-heading {
     margin-bottom: 24px;
+  }
+
+  .industryimg {
+    width: 100%;
   }
 
   .slider {
@@ -3478,6 +3490,15 @@ li {
 }
 
 #w-node-_6dd99f2d-d20d-bec7-ff42-10305f346b43-34efe319 {
+  grid-area: span 1 / span 5 / span 1 / span 5;
+  place-self: center;
+}
+
+#w-node-_6dd99f2d-d20d-bec7-ff42-10305f346b32-54b0bed4 {
+  grid-area: span 1 / span 7 / span 1 / span 7;
+}
+
+#w-node-_6dd99f2d-d20d-bec7-ff42-10305f346b43-54b0bed4 {
   grid-area: span 1 / span 5 / span 1 / span 5;
   place-self: center;
 }
