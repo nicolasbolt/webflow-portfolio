@@ -2642,7 +2642,12 @@ li {
     max-width: 700px;
   }
 
-  .marketingsystemgrid, .roigrid, .beforeandafter {
+  .marketingsystemgrid {
+    grid-template-columns: 1fr;
+    width: 80%;
+  }
+
+  .roigrid, .beforeandafter {
     grid-template-columns: 1fr 1fr;
   }
 
@@ -3053,7 +3058,7 @@ li {
   }
 
   .herop {
-    font-size: 16px;
+    font-size: 18px;
     line-height: 36px;
   }
 
@@ -3351,6 +3356,10 @@ li {
 
   .probtransformationimgs {
     max-width: 350px;
+  }
+
+  .marketingsystemgrid {
+    width: 100%;
   }
 
   .image-29 {
