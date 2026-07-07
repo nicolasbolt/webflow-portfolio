@@ -2036,7 +2036,7 @@ li {
   background-color: #fff;
   border: 1px solid #e2e2e2;
   border-radius: 2px;
-  margin-bottom: 60px;
+  margin-bottom: 20px;
   padding: 10px 20px 20px;
   box-shadow: 0 2px 5px #0003;
 }
@@ -2105,7 +2105,12 @@ li {
   margin-bottom: 0;
 }
 
-.offerheading, .price {
+.offerheading {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.price {
   text-align: center;
 }
 
