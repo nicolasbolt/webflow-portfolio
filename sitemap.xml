@@ -36,6 +36,13 @@
     <priority>0.7</priority>
   </url>
 
+  <url>
+    <loc>https://nicolasbolt.com/free-seo-strategy-video</loc>
+    <lastmod>2026-07-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
   <!-- Industries -->
   <url>
     <loc>https://nicolasbolt.com/industries/tree-service-marketing-indianapolis</loc>
@@ -47,6 +54,13 @@
   <url>
     <loc>https://nicolasbolt.com/industries/tree-service-marketing-indianapolis/how-to-get-more-reviews-for-your-tree-company</loc>
     <lastmod>2026-06-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://nicolasbolt.com/industries/tree-service-marketing-indianapolis/seo-for-tree-services-brownsburg-in</loc>
+    <lastmod>2026-07-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
