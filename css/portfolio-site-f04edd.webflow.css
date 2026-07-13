@@ -185,8 +185,9 @@ li {
 }
 
 .div-block-3 {
+  align-self: center;
   width: 60vw;
-  margin-left: 60px;
+  margin-left: 100px;
 }
 
 .div-block-4 {
@@ -714,9 +715,9 @@ li {
   grid-template-rows: auto;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-auto-columns: 1fr;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  width: 75%;
+  width: 50%;
   margin: 60px auto;
   display: flex;
 }
@@ -2391,6 +2392,12 @@ li {
   display: flex;
 }
 
+.badgeimgnolink {
+  cursor: default;
+  max-width: 125px;
+  transition: transform .1s;
+}
+
 @media screen and (max-width: 991px) {
   .container {
     width: 95vw;
@@ -3638,10 +3645,6 @@ li {
 
 #w-node-_6dd99f2d-d20d-bec7-ff42-10305f346b43-54b0bed4 {
   grid-area: span 1 / span 5 / span 1 / span 5;
-  place-self: center;
-}
-
-#w-node-_57069acd-8fe5-2da8-1354-d70b7b27828f-889ff61f, #w-node-_57069acd-8fe5-2da8-1354-d70b7b278291-889ff61f {
   place-self: center;
 }
 
